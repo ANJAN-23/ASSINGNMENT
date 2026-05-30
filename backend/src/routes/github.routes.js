@@ -4,10 +4,10 @@ const router = express.Router();
 const {
   getUser,
   getHistory
-} = require("../controllers/github.controllers.js");
-
-router.get("/:username", getUser);
+} = require("../controllers/github.controllers");
 
 router.get("/", getHistory);
+
+router.get("/:username", getUser);
 
 module.exports = router;

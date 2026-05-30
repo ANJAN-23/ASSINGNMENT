@@ -9,20 +9,15 @@ export default function Search({ setUser, setLoading }) {
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
-
-  const handleSearch = async () => {
-    if (!username.trim()) return;
-    setLoading(true);
-    setUser(null);
-    try {
-      const data = await fetchUser(username.trim());
-      setUser(data);
-    } catch (e) {
-      console.error(e);
-    }
-    setLoading(false);
-  };
-
+const handleSearch = async () => {
+  try {
+    const data = await fetchUser(username);
+    setUser(data);
+  } catch (err) {
+    console.error(err);
+    alert("User not found");
+  }
+};
   const handleKeyDown = (e) => {
     if (e.key === "Enter") handleSearch();
   };
